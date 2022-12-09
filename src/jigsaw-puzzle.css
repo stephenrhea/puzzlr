@@ -1,0 +1,126 @@
+.jigsaw-table {
+  position: relative;
+  background-color: saddlebrown;
+  width: 75%;
+  margin:auto;
+  padding: 20px;
+}
+
+.jigsaw-puzzle {
+    position: relative;
+    background-color: burlywood;
+    width: 50%;
+    margin: auto;
+    --s: 70px;
+    --r: 12px;
+}
+
+.jigsaw-puzzle__piece {
+    position: absolute;
+    border: 1px solid #cecece;
+    user-select: none;
+    grid-area: 1/1;
+    z-index: 2;
+    display: grid;
+    cursor: grab;
+    pointer-events: initial;
+    height: calc(100% + var(--r));
+    width: calc(100% + var(--r));
+    place-self: start end;
+    mask:
+      radial-gradient(var(--r) at calc(50% - var(--r)/2) 0,#0000 98%,#000) var(--r) 0/100% var(--r) no-repeat,
+      radial-gradient(var(--r) at calc(100% - var(--r)) calc(50% - var(--r)/2),#0000 98%,#000) var(--r) 50%/100% calc(100% - 2*var(--r)) no-repeat,
+      radial-gradient(var(--r) at var(--r) calc(50% - var(--r)/2),#000 98%,#0000),
+      radial-gradient(var(--r) at calc(50% + var(--r)/2) calc(100% - var(--r)),#000 98%,#0000);
+}
+
+.jigsaw-puzzle__piece:before {
+  content: "";
+  background: var(--i) 0/calc(5*var(--s)) calc(5*var(--s));
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--solved {
+    border-color: #000;
+    z-index: 0;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--dragging {
+    z-index: 5;
+    box-shadow: 1px 1px 5px 0px #00000091;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--topLeft {
+    height: calc(100% + var(--r));
+    width: 100%;
+    mask:
+      radial-gradient(var(--r) at 100% calc(50% + var(--r)/2),#0000 98%,#000)
+       0 calc(-1*var(--r)) no-repeat,
+      radial-gradient(var(--r) at 50% calc(100% - var(--r)),#000 98%,#0000) ;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--topRight {
+    place-self: start end;
+    height: calc(100% + var(--r));
+    width: calc(100% + var(--r));
+    mask:
+      linear-gradient(#000 0 0) var(--r) calc(-1*var(--r)) no-repeat,
+      radial-gradient(var(--r) at var(--r) calc(50% - var(--r)/2),#000 98%,#0000),
+      radial-gradient(var(--r) at calc(50% + var(--r)/2) calc(100% - var(--r)),#000 98%,#0000) ;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--bottomLeft {
+    height: 100%;
+    width: 100%;
+    mask:
+      radial-gradient(var(--r) at 100% calc(50% - var(--r)),#0000 98%,#000) 0 var(--r) no-repeat,
+      radial-gradient(var(--r) at 50% 0,#0000 98%,#000) 0 0/ 100% var(--r) no-repeat;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--bottomRight {
+    place-self: end;
+    height: 100%;
+    width: calc(100% + var(--r));
+    mask:
+      radial-gradient(var(--r) at calc(50% - var(--r)/2) 0,#0000 98%,#000) var(--r) 0 no-repeat,
+      radial-gradient(var(--r) at var(--r) 50%,#000 98%,#0000) ;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--topEdge {
+    place-self: start end;
+    height: calc(100% + var(--r));
+    width: calc(100% + var(--r));
+    mask:
+      radial-gradient(var(--r) at calc(100% - var(--r)) calc(50% + var(--r)/2),#0000 98%,#000)
+       var(--r) calc(-1*var(--r)) no-repeat,
+      radial-gradient(var(--r) at var(--r) calc(50% - var(--r)/2),#000 98%,#0000),
+      radial-gradient(var(--r) at calc(50% + var(--r)/2) calc(100% - var(--r)),#000 98%,#0000) ;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--leftEdge {
+    height: calc(100% + var(--r));
+    width: 100%;
+    mask:
+      radial-gradient(var(--r) at 100% calc(50% - var(--r)/2),#0000 98%,#000) 50%/ 100% calc(100% - 2*var(--r)) no-repeat,
+      radial-gradient(var(--r) at 50% 0,#0000 98%,#000) 0 0/ 100% var(--r) no-repeat,
+      radial-gradient(var(--r) at 50% calc(100% - var(--r)),#000 98%,#0000) ;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--bottomEdge {
+    place-self: end;
+    height: 100%;
+    width: calc(100% + var(--r));
+    mask:
+      radial-gradient(var(--r) at calc(50% - var(--r)/2) 0,#0000 98%,#000) var(--r) 0/100% var(--r) no-repeat,
+      radial-gradient(var(--r) at calc(100% - var(--r)) calc(50% - var(--r)/2),#0000 98%,#000) var(--r) 100%/100% calc(100% - var(--r)) no-repeat,
+      radial-gradient(var(--r) at var(--r) 50%,#000 98%,#0000) ;
+}
+
+.jigsaw-puzzle__piece.jigsaw-puzzle__piece--rightEdge {
+    place-self: start end;
+    height: calc(100% + var(--r));
+    width: calc(100% + var(--r));
+    mask:
+      radial-gradient(var(--r) at calc(50% - var(--r)/2) var(--r),#0000 98%,#000) var(--r) calc(-1*var(--r)) no-repeat,
+      radial-gradient(var(--r) at var(--r) calc(50% - var(--r)/2),#000 98%,#0000),
+      radial-gradient(var(--r) at calc(50% + var(--r)/2) calc(100% - var(--r)),#000 98%,#0000) ;
+}

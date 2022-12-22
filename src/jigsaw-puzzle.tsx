@@ -81,14 +81,14 @@ export const JigsawPuzzle: FC<JigsawPuzzleProps> = ({
       Array.from(Array(rows * columns).keys())
         .map(position => ({
           correctPosition: position,
+          type: calcType(position, rows, columns),
           tileHeight: image.height / rows,
           tileWidth: image.width / columns,
           tileOffsetX: (position % columns) * (image.width / columns),
           tileOffsetY: Math.floor(position / columns) * (image.height / rows),
           currentPosXPerc: Math.random() * (1 - 1 / rows),
           currentPosYPerc: Math.random() * (1 - 1 / columns),
-          solved: false,
-          type: calcType(position, rows, columns)
+          solved: false
         }))
     )
   }, [rows, columns])

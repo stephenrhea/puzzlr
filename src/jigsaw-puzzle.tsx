@@ -216,7 +216,7 @@ export const JigsawPuzzle: FC<JigsawPuzzleProps> = ({
               onTouchCancel={onRootMouseUp}
               onMouseLeave={onRootMouseUp}
               className="jigsaw-puzzle"
-              style={{ height: !calculatedHeight ? undefined : `${calculatedHeight}px` }}
+              style={{ height: !calculatedHeight ? undefined : `${calculatedHeight + 12}px` }}
               onDragEnter={event => {
                 event.stopPropagation()
                 event.preventDefault()
@@ -235,8 +235,8 @@ export const JigsawPuzzle: FC<JigsawPuzzleProps> = ({
         className={`jigsaw-puzzle__piece jigsaw-puzzle__piece--${tile.type} ${tile.solved ? ' jigsaw-puzzle__piece--solved' : ''} `}
         style={{
           position: 'absolute',
-          height: `${1 / rows * 100}%`,
-          width: `${1 / columns * 100}%`,
+          height: `calc(${1 / rows * 100}% + var(--r))`,
+          width: `calc(${1 / columns * 100}% + var(--r))`,
           backgroundImage: `url(${imageSrc})`,
           backgroundSize: `${rootSize.width}px ${rootSize.height}px`,
           backgroundPositionX: `${tile.correctPosition % columns / (columns - 1) * 100}%`,

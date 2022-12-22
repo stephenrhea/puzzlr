@@ -9,7 +9,7 @@
 .jigsaw-puzzle {
     position: relative;
     background-color: burlywood;
-    width: 50%;
+    width: calc(50% + var(--r));
     margin: auto;
     --s: 70px;
     --r: 12px;

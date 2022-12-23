@@ -1,7 +1,14 @@
+/* input {
+  width:90px;
+} */
+
+
+
+
 .jigsaw-table {
   position: relative;
   background-color: saddlebrown;
-  width: 75%;
+  width: 80%;
   margin:auto;
   padding: 20px;
 }
@@ -9,7 +16,7 @@
 .jigsaw-puzzle {
     position: relative;
     background-color: burlywood;
-    width: calc(50% + var(--r));
+    width: calc(67% + var(--r));
     margin: auto;
     --s: 70px;
     --r: 12px;

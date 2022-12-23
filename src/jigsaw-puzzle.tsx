@@ -74,7 +74,9 @@ export const JigsawPuzzle: FC<JigsawPuzzleProps> = ({
   const rootElement = useRef<HTMLElement>()
   const resizeObserver = useRef<ResizeObserver>()
   const draggingTile = useRef<{ tile: Tile, elem: HTMLElement, mouseOffsetX: number, mouseOffsetY: number } | undefined>()
-  const onImageLoaded = useCallback((image: HTMLImageElement) => {
+  const onImageLoaded = useCallback(() => {
+    const image = new Image()
+    image.src = imageSrc
     setImageSize({ width: image.width, height: image.height })
     if (rootSize) { setCalculatedHeight(rootSize!.width / image.width * image.height) }
     setTiles(
@@ -120,11 +122,11 @@ export const JigsawPuzzle: FC<JigsawPuzzleProps> = ({
     }
   }, [setRootSize, imageSize, rootElement, resizeObserver])
 
-  useEffect(() => {
-    const image = new Image()
-    image.onload = () => onImageLoaded(image)
-    image.src = imageSrc
-  }, [imageSrc, rows, columns])
+  // useEffect(() => {
+  //   const image = new Image()
+  //   image.onload = () => onImageLoaded(image)
+  //   image.src = imageSrc
+  // }, [imageSrc, rows, columns])
 
   const onTileMouseDown = useCallback((tile: Tile, event: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     if (!tile.solved) {
@@ -208,7 +210,19 @@ export const JigsawPuzzle: FC<JigsawPuzzleProps> = ({
     }
   }, [draggingTile, setTiles, rootSize, onSolved])
 
-  return <div ref={onRootElementRendered}
+  return <div>
+    {/* <input type="file" name="imageTest" accept="image/*" onChange={(e) => {
+        if (e.target.files) {
+          imageSrc=URL.createObjectURL(e.target.files[0])
+          alert(imageSrc)
+        }
+        else
+          imageSrc="https://www.doi.gov/sites/doi.gov/files/uploads/grandcanyonnpyanlismall.jpg"
+      }
+     } />
+     <img src={imageSrc} height="100px" width="100px" /> */}
+    <button type="button" onClick={onImageLoaded}>Create Puzzle</button>
+    <div ref={onRootElementRendered}
               onTouchMove={onRootMouseMove}
               onMouseMove={onRootMouseMove}
               onTouchEnd={onRootMouseUp}
@@ -244,5 +258,6 @@ export const JigsawPuzzle: FC<JigsawPuzzleProps> = ({
           left: `${tile.currentPosXPerc * rootSize.width}px`,
           top: `${tile.currentPosYPerc * rootSize.height}px`
         }}/>)}
+  </div>
   </div>
 }

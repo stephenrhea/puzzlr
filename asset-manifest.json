@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/puzzlr/static/css/main.6fc9c1c3.css",
-    "main.js": "/puzzlr/static/js/main.9fac8f65.js",
+    "main.js": "/puzzlr/static/js/main.3d07a2ae.js",
     "index.html": "/puzzlr/index.html",
     "main.6fc9c1c3.css.map": "/puzzlr/static/css/main.6fc9c1c3.css.map",
-    "main.9fac8f65.js.map": "/puzzlr/static/js/main.9fac8f65.js.map"
+    "main.3d07a2ae.js.map": "/puzzlr/static/js/main.3d07a2ae.js.map"
   },
   "entrypoints": [
     "static/css/main.6fc9c1c3.css",
-    "static/js/main.9fac8f65.js"
+    "static/js/main.3d07a2ae.js"
   ]
 }
